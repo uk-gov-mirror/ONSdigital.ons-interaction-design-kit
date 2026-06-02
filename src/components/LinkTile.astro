@@ -1,0 +1,46 @@
+---
+const { title, description, link } = Astro.props;
+---
+
+<a href={ link || "#" } class="link-tile">
+  <span>{ title }</span>
+  <p>{ description }</p>
+</a>
+
+<style>
+  .link-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-primary-ocean-blue);
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .link-tile:hover {
+    background-color: var(--color-tint-ocean-blue);
+  }
+
+  .link-tile:hover span {
+    color: var(--color-link-hover);
+    text-decoration-color: var(--color-link-hover);
+  }
+
+  .link-tile:focus {
+    outline: 2px solid var(--color-greyscale-black);
+  }
+
+  span {
+    font-size: 1.625rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+  }
+
+  p {
+    color: var(--color-text-primary);
+  }
+</style>

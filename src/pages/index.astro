@@ -1,11 +1,57 @@
 ---
-import DatasetLayout from "../layouts/DatasetLayout.astro";
-
-
+import MinimalLayout from "../layouts/MinimalLayout.astro";
+import LinkTile from "../components/LinkTile.astro";
 ---
 
-<DatasetLayout
-  title="Dataset title"
-  description="Dataset description"
->
-</DatasetLayout>
+<MinimalLayout>
+  <div class="container">
+    <section class="topics">
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+      <LinkTile
+        title="Drug use, alcohol and smoking"
+        description="Smoking, drinking and drug taking in Great Britain and associated deaths and illnesses."
+        link="https://www.google.co.uk"
+      />
+    </section>
+  </div>
+</MinimalLayout>
+
+<style>
+  .topics {
+    display: grid;
+    gap: var(--layout-gutter);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: var(--spacing-lg) 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    .topics {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+</style>

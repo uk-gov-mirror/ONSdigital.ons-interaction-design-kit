@@ -15,3 +15,4 @@ export { default as PageLayout } from './layouts/PageLayout.astro';
 export { default as DatasetLayout } from './layouts/DatasetLayout.astro';
 export { default as Figure } from './components/Figure.astro';
 export { default as Icon } from './components/Icon.astro';
+export { default as LinkTile } from './components/LinkTile.astro';
