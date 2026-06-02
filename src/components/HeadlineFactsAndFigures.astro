@@ -1,0 +1,54 @@
+---
+import HeadlineTile from "./HeadlineTile.astro";
+
+const { content } = Astro.props;
+---
+
+<div class="headlineFactsAndFigures">
+  <HeadlineTile
+    heading="Deaths registered annually"
+    geography="England and Wales"
+    keyFigure="581,363"
+    supportingText="In 2023, up 0.7% from 2022"
+  />
+  <HeadlineTile
+    heading="Alcohol-specific deaths"
+    geography="UK"
+    keyFigure="10,473"
+    supportingText="In 2023, the highest number on record."
+  />
+  <HeadlineTile
+    heading="Suicides registered"
+    geography="England and Wales"
+    keyFigure="6,069"
+    supportingText="In 2023, up 7.6% from 2022"
+  />
+</div>
+
+<style>
+  .headlineFactsAndFigures {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--layout-gutter);
+    width: 100%;
+  }
+
+  @media screen and (max-width: 800px) {
+    .headlineFactsAndFigures {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .banner {
+      padding: var(--spacing-lg) var(--layout-tablet-outside-margin);
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .banner {
+       padding: var(--spacing-lg) var(--layout-mobile-outside-margin);
+    }
+  }
+</style>

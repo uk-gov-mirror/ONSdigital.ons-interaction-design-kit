@@ -3,6 +3,7 @@ import type { MarkdownHeading } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
+import HeadlineFactsAndFigures from "../components/HeadlineFactsAndFigures.astro";
 
 const { caption, title, description, metadata, sections = [] } = Astro.props;
 
@@ -20,6 +21,9 @@ const toc = sections.filter((h: MarkdownHeading) => h.depth === 2);
 
   <main>
     <div class="container">
+
+      <HeadlineFactsAndFigures />
+
       <div class="layout">
 
         <aside class="table-of-contents">
@@ -38,12 +42,24 @@ const toc = sections.filter((h: MarkdownHeading) => h.depth === 2);
 
 <style>
   main {
-    margin: 64px 0 80px 0;
+    margin: 64px var(--layout-desktop-outside-margin) 80px;
   }
 
   .layout {
     display: grid;
     gap: var(--layout-gutter);
     grid-template-columns: 1fr 2fr;
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    main {
+      margin: 64px var(--layout-tablet-outside-margin) 80px;
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    main {
+       margin: 64px var(--layout-mobile-outside-margin) 80px;
+    }
   }
 </style>
