@@ -18,7 +18,7 @@ const { type, caption, title, description, metadata } = Astro.props;
 
 <style>
   .banner {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) var(--layout-desktop-outside-margin);
   }
 
   .banner .container {
@@ -33,5 +33,17 @@ const { type, caption, title, description, metadata } = Astro.props;
 
   .page-banner {
     background-color: var(--color-greyscale-grey-5);
+  }
+
+  @media screen and (max-width: 46.5rem) {
+    .banner {
+      padding: var(--spacing-lg) var(--layout-tablet-outside-margin);
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .banner {
+       padding: var(--spacing-lg) var(--layout-mobile-outside-margin);
+    }
   }
 </style>

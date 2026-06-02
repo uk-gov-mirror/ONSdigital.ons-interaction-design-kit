@@ -1,0 +1,42 @@
+---
+const { heading, geography, keyFigure, supportingText } = Astro.props;
+---
+
+<figure>
+  <header>
+    <h2 class="group-title">{ heading }</h2>
+    <p>{ geography }</p>
+  </header>
+
+  <div class="figure-content">
+    <p class="key-figure page-title">{ keyFigure }</p>
+    <p class="supporting-text">{ supportingText }</p>
+  </div>
+</figure>
+
+<style>
+  figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-greyscale-grey-5);
+    padding: var(--spacing-sm);
+    height: auto;
+    overflow: visible;
+    gap: 24px
+  }
+
+  @media screen and (max-width: 1024px) {
+    .key-figure {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .key-figure {
+      font-size: 32px;
+      line-height: 40px;
+    }
+  }
+</style>
