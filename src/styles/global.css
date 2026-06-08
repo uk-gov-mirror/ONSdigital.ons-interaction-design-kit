@@ -148,24 +148,10 @@ body {
 }
 
 .container {
+  box-sizing: content-box;
   max-width: var(--layout-container);
   margin: 0 auto;
-}
-
-.content {
   padding: 0 var(--layout-desktop-outside-margin);
-}
-
-@media screen and (max-width: 46.5rem) {
-  .content {
-    padding: 0 var(--layout-tablet-outside-margin);
-  }
-}
-
-@media screen and (max-width: 30rem) {
-  .content {
-    padding: 0 var(--layout-mobile-outside-margin);
-  }
 }
 
 h1, h2, h3, h4, h5, h6 {

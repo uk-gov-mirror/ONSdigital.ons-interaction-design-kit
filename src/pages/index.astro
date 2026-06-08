@@ -1,11 +1,38 @@
 ---
-import DatasetLayout from "../layouts/DatasetLayout.astro";
+import MinimalLayout from "../layouts/MinimalLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import ContentBanner from "../components/PageBanner/ContentBanner.astro";
+import TopicBanner from "../components/PageBanner/TopicBanner.astro";
+import ThemeBanner from "../components/PageBanner/ThemeBanner.astro";
 
-
+const metadata = [
+  { label: "Metadata label 1", value: "Metadata value 1" },
+  { label: "Metadata label 2", value: "Metadata value 2" },
+  { label: "Metadata label 3", value: "Metadata value 3" }
+]
 ---
 
-<DatasetLayout
-  title="Dataset title"
-  description="Dataset description"
->
-</DatasetLayout>
+<MinimalLayout>
+    
+    <!-- { type, caption, title, description, metadata } -->
+
+    <SiteHeader />
+    <ContentBanner
+      caption="Statistical article"
+      title="This is a statistical article title"
+      description="Explore our collection of datasets, meticulously curated to empower your data-driven projects. Whether you're a researcher, developer, or data enthusiast, our datasets provide a rich resource for analysis, machine learning, and more."
+      officialStatisticsAccredited={ true }
+      metadata={ metadata }
+    />
+    <TopicBanner
+      caption="Topic page"
+      title="This is a topic page title"
+      description="Discover our comprehensive collection of datasets, meticulously curated to empower your data-driven projects. Whether you're a researcher, developer, or data enthusiast, our datasets provide a rich resource for analysis, machine learning, and more."
+    />
+    <ThemeBanner
+      caption="Theme page"
+      title="This is a theme page title"
+      description="Discover our comprehensive collection of datasets, meticulously curated to empower your data-driven projects. Whether you're a researcher, developer, or data enthusiast, our datasets provide a rich resource for analysis, machine learning, and more."
+    />
+
+</MinimalLayout>

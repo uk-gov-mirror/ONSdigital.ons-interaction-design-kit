@@ -1,0 +1,51 @@
+---
+import Heading from "../Heading.astro";
+
+const { variant = "content", caption, title, description } = Astro.props;
+---
+
+<section class="banner" data-variant={ variant }>
+  <div class="container">
+
+    <Heading
+      caption={ caption }
+      title={ title }
+      size="page"
+    />
+    <p class="description">{ description }</p>
+
+    <slot></slot>
+</section>
+
+<style>
+  .banner {
+    padding: var(--spacing-lg) 0;
+    --heading-caption-color: var(--color-text-secondary);
+  }
+
+  .banner .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: 0 var(--layout-desktop-outside-margin);
+    position: relative;
+  }
+
+  .description {
+    max-width: var(--layout-content-width);
+  }
+
+  .banner[data-variant="content"] {
+    background-color: var(--color-greyscale-grey-5);
+  }
+
+  .banner[data-variant="topic"] {
+    background-color: var(--color-tint-ocean-blue);
+  }
+
+  .banner[data-variant="theme"] {
+    background-color: var(--color-primary-ocean-blue);
+    color: var(--color-text-inverted);
+    --heading-caption-color: var(--color-text-inverted);
+  }
+</style>

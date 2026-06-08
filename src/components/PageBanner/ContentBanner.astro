@@ -1,0 +1,59 @@
+---
+import BaseBanner from "../PageBanner/BaseBanner.astro";
+import officialStatisticsAccreditedBadge from "../../assets/official-statistics-accredited.svg?raw";
+
+interface Props {
+  caption: string;
+  title: string;
+  description: string;
+  officialStatisticsAccredited?: boolean;
+  metadata?: { label: string; value: string }[];
+}
+
+const { caption, title, description, officialStatisticsAccredited, metadata } = Astro.props;
+---
+
+<BaseBanner
+  variant="content"
+  caption={ caption }
+  title={ title}
+  description={ description }
+>
+  { officialStatisticsAccredited &&
+    <div class="official-statistics-accredited-badge">
+      <Fragment set:html={ officialStatisticsAccreditedBadge } />
+    </div>
+  }
+
+  { metadata &&
+    <div class="metadata-grid">
+      { metadata.map((item) => (
+        <div class="metadata-field">
+          <label>{ item.label }</label>
+          <span>{ item.value }</span>
+        </div>
+      ))}
+    </div>
+  }
+</BaseBanner>
+
+<style>
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--layout-gutter);
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+  }
+
+  .official-statistics-accredited-badge {
+    top: 0;
+    right: var(--layout-desktop-outside-margin);
+    position: absolute;
+    width: 72px;
+    height: 88px;
+  }
+</style>
