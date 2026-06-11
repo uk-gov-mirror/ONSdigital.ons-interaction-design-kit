@@ -21,7 +21,7 @@
   "author": "Gareth Lewis",
   "license": "ISC",
   "peerDependencies": {
-    "astro": "^6.1.5"
+    "astro": "^6.4.4"
   },
   "devDependencies": {
     "@types/node": "^25.5.0"

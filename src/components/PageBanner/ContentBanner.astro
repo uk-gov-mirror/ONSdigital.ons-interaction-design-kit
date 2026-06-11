@@ -1,6 +1,7 @@
 ---
 import BaseBanner from "../PageBanner/BaseBanner.astro";
 import officialStatisticsAccreditedBadge from "../../assets/official-statistics-accredited.svg?raw";
+import ReleaseStatus from "../ReleaseStatus.astro";
 
 interface Props {
   caption: string;
@@ -24,6 +25,8 @@ const { caption, title, description, officialStatisticsAccredited, metadata } = 
       <Fragment set:html={ officialStatisticsAccreditedBadge } />
     </div>
   }
+
+  <ReleaseStatus type="not-latest" />
 
   { metadata &&
     <div class="metadata-grid">

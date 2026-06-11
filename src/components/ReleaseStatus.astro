@@ -1,0 +1,47 @@
+---
+// 1. Define the allowed status types
+type StatusType = 'latest' | 'not-latest' | 'amended';
+
+// 2. Type your Astro props
+interface Props {
+  type: StatusType;
+}
+
+const { type } = Astro.props;
+
+// 3. Explicitly type the object keys using Record
+const statusMessages: Record<StatusType, string> = {
+  'latest': 'Latest release',
+  'not-latest': 'Not the latest release',
+  'amended': 'The version has been amended since publication',
+};
+
+const displayMessage = statusMessages[type] || 'Unknown Status';
+---
+
+<span class="release-status" data-type={ type }>
+  { displayMessage }
+</span>
+
+<style>
+  .release-status {
+    font-weight: 700;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    align-self: flex-start;
+  }
+
+  .release-status[data-type="latest"] {
+    background-color: var(--color-tint-leaf-green);
+    border-left: 8px solid var(--color-supporting-leaf-green);
+  }
+
+  .release-status[data-type="not-latest"] {
+    background-color: var(--color-tint-jaffa-orange);
+    border-left: 8px solid var(--color-supporting-jaffa-orange);
+  }
+
+  .release-status[data-type="amended"] {
+    background-color: var(--color-tint-cobalt-blue);
+    border-left: 8px solid var(--color-supporting-cobalt-blue);
+  }
+</style>  
