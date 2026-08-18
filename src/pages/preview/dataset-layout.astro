@@ -1,0 +1,10 @@
+---
+// src/pages/preview/dataset-layout.astro
+import DatasetLayout from "../../layouts/DatasetLayout.astro";
+import { mockDatasetProps } from "../../mocks/datasetMock";
+
+console.log(mockDatasetProps);
+---
+
+<!-- Render component directly using the mock fixtures -->
+<DatasetLayout {...mockDatasetProps} />

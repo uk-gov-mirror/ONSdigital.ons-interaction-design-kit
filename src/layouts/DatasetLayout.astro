@@ -2,22 +2,27 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
-import EditionSelector from "../components/EditionSelector.astro";
 import ContactDetails from "../components/ContactDetails.astro";
 import DocumentList from "../components/DocumentList.astro";
 import FileDownload from "../components/FileDownload.astro";
-import { rootCertificates } from "node:tls";
+
+import type {
+  DatasetLayoutProps,
+  DataFile,
+  RelatedContentItem,
+  VersionHistoryItem
+} from "../types/dataset";
 
 const {
-  datasetTitle,
+  datasetTitle = "Untitled Dataset",
   description,
   editionTitle,
   metadata,
-  dataFiles,
+  dataFiles = [],
   importantNotesAndUsageInformation,
-  relatedContent,
-  versionHistory,
-  contactDetails,
+  relatedContent = [],
+  versionHistory = [],
+  contactDetails = { name: "", email: "", telephoneNumber: "" },
 } = Astro.props;
 
 const toc = [];
@@ -111,20 +116,22 @@ if (contactDetails) {
             </dl>
           </section>
 
-          <section class="get-the-data" id="get-the-data">
-            <h2 class="section-title">Get the data</h2>
-            <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p>
+          { dataFiles.length > 0 &&
+            <section class="get-the-data" id="get-the-data">
+              <h2 class="section-title">Get the data</h2>
+              <!-- <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p> -->
 
-            { dataFiles.map((file) => (
-              <FileDownload
-                filename={ file.fileName }
-                filetype={ file.fileType }
-                filedescription={ file.fileDescription }
-                filesize={ file.fileSize }
-                fileUrl={ file.fileUrl }
-              />
-            ))}
-          </section>
+              { dataFiles.map((file: DataFile) => (
+                <FileDownload
+                  filename={ file.fileName }
+                  filetype={ file.fileType }
+                  filedescription={ file.fileDescription }
+                  filesize={ file.fileSize }
+                  fileUrl={ file.fileUrl }
+                />
+              ))}
+            </section>
+          }
 
           <section class="quality-and-usage-information" id="quality-and-usage-information">
             <h2 class="section-title">Quality and usage information</h2>
@@ -146,13 +153,13 @@ if (contactDetails) {
             </section>
           )}
 
-          { relatedContent && (
+          { relatedContent.length > 0 && (
             <section class="related-content" id="related-content">
               <h2 class="section-title">Related content</h2>
 
               <div class="related-content-list">
 
-                { relatedContent.map((content) => (
+                { relatedContent.map((content: RelatedContentItem) => (
                   <DocumentList
                     title={ content.title }
                     link={ content.url }
@@ -165,7 +172,7 @@ if (contactDetails) {
             </section>
           )}
 
-          { versionHistory && (
+          { versionHistory.length > 0 && (
             <section class="version-history" id="version-history">
               <h2 class="section-title">Version history</h2>
 
@@ -179,7 +186,7 @@ if (contactDetails) {
                 </thead>
 
                 <tbody>
-                  { versionHistory.map((version) => (
+                  { versionHistory.map((version: VersionHistoryItem) => (
                     <tr>
                       <td><a href="#">{ version.version }</a></td>
                       <td><a href="#">{ version.releaseDate }</a></td>
