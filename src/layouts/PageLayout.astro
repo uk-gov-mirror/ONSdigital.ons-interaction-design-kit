@@ -4,9 +4,43 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-const { caption, title, description, metadata, sections = [] } = Astro.props;
+interface Metadata {
+  releaseDate?: string;
+  nextRelease?: string;
+  contactName?: string;
+  contactEmail?: string;
+}
 
-const toc = sections.filter((h: MarkdownHeading) => h.depth === 2);
+interface Props {
+  caption?: string;
+  title: string;
+  description: string;
+  metadata?: Metadata;
+  sections?: MarkdownHeading[];
+  showTableOfContents?: boolean;
+}
+
+const {
+  content,
+  headings = []
+} = Astro.props;
+
+const {
+  caption,
+  title,
+  description,
+  metadata,
+  showTableOfContents = true,
+} = content;
+
+const sections: MarkdownHeading[] = headings;
+
+const toc = sections
+  .filter((section) => section.depth === 2)
+  .map((section) => ({
+    id: section.slug,
+    title: section.text,
+  }));
 ---
 
 <BaseLayout>
@@ -20,11 +54,14 @@ const toc = sections.filter((h: MarkdownHeading) => h.depth === 2);
 
   <main>
     <div class="container">
-      <div class="layout">
 
-        <aside class="table-of-contents">
-          <TableOfContents sections={ toc } />
-        </aside>
+      <div class:list={["layout", { "layout--with-toc": showTableOfContents }]}>
+
+        { showTableOfContents && (
+          <aside class="table-of-contents">
+            <TableOfContents sections={ toc } />
+          </aside>
+        )}
 
         <div class="page-content">
           <slot />

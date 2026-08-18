@@ -1,4 +1,13 @@
 ---
+interface Section {
+  id: string;
+  title: string;
+}
+
+interface Props {
+  sections?: Section[];
+}
+
 const { sections = [] } = Astro.props;
 ---
 
@@ -6,8 +15,9 @@ const { sections = [] } = Astro.props;
   <h2>Contents</h2>
 
   <ul>
-    { sections.map((h) => (
-      <li><a href={`#${h.slug}`}>{ h.text }</a></li>
+    { sections.map((section) => (
+      <li>
+        <a href={`#${section.id}`}>{ section.title }</a></li>
     ))}
   </ul>
 

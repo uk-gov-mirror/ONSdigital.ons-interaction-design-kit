@@ -1,0 +1,38 @@
+---
+layout: "../../layouts/PageLayout.astro"
+caption: "Statistical article"
+title: "UK Economy Latest Updates"
+description: "An overview of gross domestic product and economic output measures for Q1 2026."
+metadata:
+  releaseDate: "18 August 2026"
+  nextRelease: "18 September 2026"
+  contactName: "Economic Statistics Team"
+  contactEmail: "economy@example.gov.uk"
+---
+
+import FileDownload from "../../components/FileDownload.astro";
+
+## Main Points
+
+* Gross domestic product (GDP) is estimated to have grown by 0.2% in the latest quarter.
+* The services sector was the main contributor to growth.
+
+## Economic Analysis
+
+Economic activity across production industries experienced minor fluctuations throughout the quarter.
+
+### Production and Services
+
+Services output increased by 0.3%, led by professional, scientific, and technical activities.
+
+<FileDownload 
+  filename="gdp_q1_2026.csv"
+  filetype="CSV"
+  filedescription="Quarterly gross domestic product time series data"
+  filesize="1.1 MB"
+  fileUrl="#"
+/>
+
+## Quality and Methodology
+
+Read the full methodology note for details on how seasonal adjustments were applied to these estimates.

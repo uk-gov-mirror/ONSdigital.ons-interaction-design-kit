@@ -2,10 +2,16 @@
 import { Image } from 'astro:assets';
 import oglLogo from '../assets/images/ogl-logo.svg';
 import onsLogoEnglishHorizontalMonochrome from '../assets/images/ons-logo-en-horizontal-monochrome.svg';
-import onsLogoCymraegHorizontalMonochrome from '../assets/images/ons-logo-cy-horizontal-monochrome.svg'
+import onsLogoCymraegHorizontalMonochrome from '../assets/images/ons-logo-cy-horizontal-monochrome.svg';
+
 import ui from '../i18n/footer.json';
+
+interface Props {
+  lang?: keyof typeof ui;
+}
+
 const { lang = "en" } = Astro.props;
-const t = ui[lang] || ui['en']; // Fallback to English if the specified language is not available
+const t = ui[lang as keyof typeof ui] || ui['en']; // Fallback to English if the specified language is not available
 
 ---
 
@@ -47,13 +53,13 @@ const t = ui[lang] || ui['en']; // Fallback to English if the specified language
         <h1 class="item-title">{ t['section.connect'] }</h1>
         <nav>
           <ul>
-            <li><a href="#" class="external-link">{ t['connect.x'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.instagram'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.facebook'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.linkedIn'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.consultations'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.discussionForums'] }</a></li>
-            <li><a href="#" class="external-link">{ t['connect.emailAlerts'] }</a></li>
+            <li><a href="#">{ t['connect.x'] }</a></li>
+            <li><a href="#">{ t['connect.instagram'] }</a></li>
+            <li><a href="#">{ t['connect.facebook'] }</a></li>
+            <li><a href="#">{ t['connect.linkedIn'] }</a></li>
+            <li><a href="#">{ t['connect.consultations'] }</a></li>
+            <li><a href="#">{ t['connect.discussionForums'] }</a></li>
+            <li><a href="#">{ t['connect.emailAlerts'] }</a></li>
           </ul>
         </nav>
       </div>
@@ -64,7 +70,7 @@ const t = ui[lang] || ui['en']; // Fallback to English if the specified language
 
       <div class="ogl-statement">
         <Image src={oglLogo} alt="Open Government Licence logo" />
-        <p class="small">{ t['oglStatementPart1'] } <a href="#" class="external-link">Open Government Licence v3.0</a>{ t['oglStatementPart2'] }</p>
+        <p class="small">{ t['oglStatementPart1'] } <a href="#">Open Government Licence v3.0</a>{ t['oglStatementPart2'] }</p>
       </div>
       
       { lang === "en" ? 

@@ -3,22 +3,23 @@ const { filename, filetype, filedescription, filesize, fileUrl } = Astro.props;
 ---
 
 <div class="file-download">
-    <span class="file-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" width="34" height="18" viewBox="0 0 34 18" fill="none">
-        <path opacity="0.4" d="M33 12L23.7071 2.70711C23.0771 2.07714 22 2.52331 22 3.41421V12H33Z" fill="#206095"/>
-        <path d="M1 17V2C1 1.44772 1.44772 1 2 1H21.8M21.8 1L33 12.2M21.8 1V11.2C21.8 11.7523 22.2477 12.2 22.8 12.2H33M33 12.2V17" stroke="#206095" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="file-extension">{ filetype }</span>
-    </span>
-    <div class="file-information">
-      <div class="file-details">
-        <label class="file-name">{ filename }</label>
-        <span class="file-type">{ filedescription } ({ filesize })</span>
-      </div>
-      <a class="file-download-link" href={ fileUrl }>Download file</a>
+  
+  <span class="file-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="18" viewBox="0 0 34 18" fill="none">
+      <path opacity="0.4" d="M33 12L23.7071 2.70711C23.0771 2.07714 22 2.52331 22 3.41421V12H33Z" fill="#206095"/>
+      <path d="M1 17V2C1 1.44772 1.44772 1 2 1H21.8M21.8 1L33 12.2M21.8 1V11.2C21.8 11.7523 22.2477 12.2 22.8 12.2H33M33 12.2V17" stroke="#206095" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="file-extension">{ filetype }</span>
+  </span>
+  
+  <div class="file-information">
+    <div class="file-details">
+      <label class="file-name">{ filename }</label>
+      <span class="file-type">{ filedescription } ({ filesize })</span>
     </div>
+    <a class="file-download-link" href={ fileUrl }>Download file</a>
   </div>
-
+  
 </div>
 
 <style>
