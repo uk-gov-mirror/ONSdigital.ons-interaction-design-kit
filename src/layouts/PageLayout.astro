@@ -11,18 +11,23 @@ interface Metadata {
   contactEmail?: string;
 }
 
-interface Props {
+interface Content {
   caption?: string;
   title: string;
   description: string;
   metadata?: Metadata;
-  sections?: MarkdownHeading[];
+}
+
+interface Props {
+  content: Content;
+  headings?: MarkdownHeading[];
   showTableOfContents?: boolean;
 }
 
 const {
   content,
-  headings = []
+  headings = [],
+  showTableOfContents = true,
 } = Astro.props;
 
 const {
@@ -30,7 +35,6 @@ const {
   title,
   description,
   metadata,
-  showTableOfContents = true,
 } = content;
 
 const sections: MarkdownHeading[] = headings;
