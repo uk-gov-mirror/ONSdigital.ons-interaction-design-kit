@@ -1,7 +1,10 @@
 ---
 import Heading from "../components/Heading.astro";
 
-const { caption, title, description, metadata } = Astro.props;
+const { caption, title, description, metadata = {} } = Astro.props;
+
+const formatMetadataLabel = (key: string) =>
+  key.replace(/([A-Z])/g, " $1").replace(/^./, (character) => character.toUpperCase());
 ---
 
 <section class="banner">
@@ -12,13 +15,24 @@ const { caption, title, description, metadata } = Astro.props;
       size="page"
     />
     <p class="description">{ description }</p>
-    <p>{ metadata }</p>
+
+    { Object.keys(metadata).length > 0 && (
+      <dl class="metadata-list">
+        { Object.entries(metadata).map(([key, value]) => (
+          <>
+            <dt>{ formatMetadataLabel(key) }</dt>
+            <dd>{ value }</dd>
+          </>
+        )) }
+      </dl>
+    ) }
   </div>
 </section>
 
 <style>
   .banner {
     padding: var(--spacing-lg) 0;
+    background-color: var(--color-greyscale-grey-5);
   }
 
   .banner .container {
@@ -29,13 +43,5 @@ const { caption, title, description, metadata } = Astro.props;
 
   .description {
     max-width: var(--layout-content-width);
-  }
-
-  .topic-banner {
-    background-color: var(--color-tint-ocean-blue);    
-  }
-
-  .page-banner {
-    background-color: var(--color-greyscale-grey-5);
   }
 </style>

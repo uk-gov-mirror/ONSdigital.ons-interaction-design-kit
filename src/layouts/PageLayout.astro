@@ -4,38 +4,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageBanner from "../components/PageBanner.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 
-interface Metadata {
-  releaseDate?: string;
-  nextRelease?: string;
-  contactName?: string;
-  contactEmail?: string;
-}
-
-interface Content {
-  caption?: string;
-  title: string;
-  description: string;
-  metadata?: Metadata;
-}
-
-interface Props {
-  content: Content;
-  headings?: MarkdownHeading[];
-  showTableOfContents?: boolean;
-}
-
 const {
-  content,
+  frontmatter = {},
   headings = [],
   showTableOfContents = true,
 } = Astro.props;
 
 const {
-  caption,
   title,
-  description,
+  caption,
   metadata,
-} = content;
+  description,
+} = frontmatter;
 
 const sections: MarkdownHeading[] = headings;
 

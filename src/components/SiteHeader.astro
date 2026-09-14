@@ -99,10 +99,6 @@ const { lang = "en" } = Astro.props;
 </script>
 
 <style>
-  .header-main {
-    padding: 0 var(--layout-desktop-outside-margin);
-  }
-
   .header-main .container {
     display: flex;
     flex-direction: row;
@@ -120,10 +116,6 @@ const { lang = "en" } = Astro.props;
   }
 
   @media screen and (max-width: 46.5rem) {
-    .header-main {
-      padding: 0 var(--layout-tablet-outside-margin);
-    }
-
     .stacked-logo {
       display: inline;
     }
@@ -134,12 +126,6 @@ const { lang = "en" } = Astro.props;
 
     .language-switcher {
       display: none;
-    }
-  }
-
-  @media screen and (max-width: 30rem) {
-    .header-main {
-       padding: 0 0 0 var(--layout-mobile-outside-margin);
     }
   }
 </style>
