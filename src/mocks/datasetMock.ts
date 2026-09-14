@@ -54,7 +54,9 @@ export const mockDatasetProps: DatasetLayoutProps = {
     }
   ],
   versionHistory: [
-    { version: "1.0.0", releaseDate: "2026-02-01", releaseNotes: "Initial release" }
+    { version: "3", releaseDate: "24 October 2025 09:30am", releaseNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, qui nihil optio ab officiis quasi ullam consectetur dolore aut rem? Ratione ab perferendis praesentium dolore molestias fuga blanditiis nisi dicta." },
+    { version: "2", releaseDate: "24 October 2025 09:30am", releaseNotes: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, qui nihil optio ab officiis quasi ullam consectetur dolore aut rem? Ratione ab perferendis praesentium dolore molestias fuga blanditiis nisi dicta." },
+    { version: "1", releaseDate: "24 October 2025 09:30am", releaseNotes: "Initial release" }
   ],
   contactDetails: {
     name: "Prices & Inflation Team",
