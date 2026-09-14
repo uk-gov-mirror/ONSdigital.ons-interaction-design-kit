@@ -17,7 +17,8 @@ const { sections = [] } = Astro.props;
   <ul>
     { sections.map((section) => (
       <li>
-        <a href={`#${section.id}`}>{ section.title }</a></li>
+        <a href={`#${section.id}`}>{ section.title }</a>
+      </li>
     ))}
   </ul>
 
@@ -30,12 +31,17 @@ const { sections = [] } = Astro.props;
   }
 
   ul {
-    list-style-type: "—";
-    padding: 0;
+    list-style: none;
+    padding: 16px 0;
     margin: 0;
   }
 
   ul li {
     margin: 0 0 var(--spacing-2xs) 0;
+  }
+
+  li::before {
+    content: "—";
+    margin-right: 8px;
   }
 </style>

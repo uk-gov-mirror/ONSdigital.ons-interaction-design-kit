@@ -7,7 +7,6 @@ import DocumentList from "../components/DocumentList.astro";
 import FileDownload from "../components/FileDownload.astro";
 
 import type {
-  DatasetLayoutProps,
   DataFile,
   RelatedContentItem,
   VersionHistoryItem
@@ -17,7 +16,7 @@ const {
   datasetTitle = "Untitled Dataset",
   description,
   editionTitle,
-  metadata,
+  metadata = {},
   dataFiles = [],
   importantNotesAndUsageInformation,
   relatedContent = [],
@@ -25,50 +24,55 @@ const {
   contactDetails = { name: "", email: "", telephoneNumber: "" },
 } = Astro.props;
 
+
+/* Build up Table of Contents */
 const toc = [];
 
+const formatMetadataLabel = (key: string) =>
+  key.replace(/([A-Z])/g, " $1").replace(/^./, (character) => character.toUpperCase());
+
 toc.push({
-  text: "Edition information",
-  slug: "edition-information",
+  title: "Edition information",
+  id: "edition-information",
 });
 
 if (dataFiles?.length) {
   toc.push({
-    text: "Get the data",
-    slug: "get-the-data",
+    title: "Get the data",
+    id: "get-the-data",
   });
 }
 
 toc.push({
-  text: "Quality and usage information",
-  slug: "quality-and-usage-information",
+  title: "Quality and methodology information",
+  id: "quality-and-methodology-information",
 });
 
 if (importantNotesAndUsageInformation) {
   toc.push({
-    text: "Important notes and usage information",
-    slug: "important-notes-and-usage-information",
+    title: "Important notes and usage information",
+    id: "important-notes-and-usage-information",
   });
 }
 
 if (relatedContent?.length) {
   toc.push({
-    text: "Related content",
-    slug: "related-content",
+    title: "Related content",
+    id: "related-content",
   });
 }
 
 if (versionHistory?.length) {
   toc.push({
-    text: "Version history",
-    slug: "version-history",
+    title: "Version history",
+    id: "version-history",
   });
 }
 
 if (contactDetails) {
   toc.push({
-    text: "Contact details",
-    slug: "contact-details",
+    title: "Contact details",
+    id: "contact-details",
   });
 }
 ---
@@ -99,42 +103,36 @@ if (contactDetails) {
             <h2 class="section-title">{ editionTitle } edition</h2>
 
             <dl class="metadata-list">
-              <dt>Release date</dt>
-              <dd>{ metadata.releaseDate }</dd>
-
-              <dt>Next release</dt>
-              <dd>{ metadata.nextRelease }</dd>
-
-              <dt>Contact</dt>
-              <dd>{ metadata.contact }</dd>
-
-              <dt>Version</dt>
-              <dd>{ metadata.version }</dd>
-
-              <dt>Accreditation status</dt>
-              <dd>{ metadata.accreditationStatus }</dd>
+              { Object.entries(metadata).map(([key, value]) => (
+                <>
+                  <dt>{ formatMetadataLabel(key) }</dt>
+                  <dd>{ value }</dd>
+                </>
+              )) }
             </dl>
           </section>
 
           { dataFiles.length > 0 &&
             <section class="get-the-data" id="get-the-data">
               <h2 class="section-title">Get the data</h2>
-              <!-- <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p> -->
+              <p>Download the data, released on { metadata.releaseDate }, in the following formats:</p>
 
-              { dataFiles.map((file: DataFile) => (
-                <FileDownload
+              <div class="file-download-list">
+                { dataFiles.map((file: DataFile) => (
+                  <FileDownload
                   filename={ file.fileName }
                   filetype={ file.fileType }
                   filedescription={ file.fileDescription }
                   filesize={ file.fileSize }
                   fileUrl={ file.fileUrl }
-                />
-              ))}
+                  />
+                ))}
+              </div>
             </section>
           }
 
-          <section class="quality-and-usage-information" id="quality-and-usage-information">
-            <h2 class="section-title">Quality and usage information</h2>
+          <section class="quality-and-methodology-information" id="quality-and-methodology-information">
+            <h2 class="section-title">Quality and methodology information</h2>
 
             <p>Includes:</p>
             <ul>
