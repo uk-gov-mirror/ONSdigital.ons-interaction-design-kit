@@ -1,10 +1,10 @@
 ---
 import Heading from "../components/Heading.astro";
 
-const { type, caption, title, description, metadata } = Astro.props;
+const { caption, title, description, metadata } = Astro.props;
 ---
 
-<section class={`banner ${type}-banner`}>
+<section class="banner">
   <div class="container">
     <Heading
       caption={ caption }
